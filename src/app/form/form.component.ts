@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import {Movie} from '../interfaces/movie';
-import {MoviesService} from '../services/movies.service';
+import {Restaurant} from '../interfaces/restaurant';
+import {RestaurantsService} from '../services/restaurant.service';
 import {ActivatedRoute} from '@angular/router';
-
-import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-form',
@@ -13,30 +11,27 @@ import { map } from 'rxjs/operators'
 })
 export class FormComponent implements OnInit {
 
-  movie: Movie = {
+  restaurant: Restaurant = {
     name: null,
-    year: null,
     description: null,
-    duration: null,
-    genre: null
+    image: null
   };
 
-  id: any;
-  editing: boolean = false;
-  movies: Movie[];
+  id: number;
+  editing = false;
+  restaurants: Restaurant[];
 
-  constructor(private moviesService: MoviesService, private activatedRoute: ActivatedRoute) {
+  constructor(private restaurantsService: RestaurantsService, private activatedRoute: ActivatedRoute) {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
-      this.moviesService.get()
-        .pipe(
-          map( response => response.objects)
-        )
-        .subscribe((data: Movie[]) => {
-          this.movies = data;
-          this.movie = this.movies.find((m) => { return m.id == this.id });
-          console.log(this.movie);
+      this.restaurantsService.get()
+        .subscribe((data: Restaurant[]) => {
+          this.restaurants = data;
+          this.restaurant = this.restaurants.find( r => {
+            return r.id == this.id ;
+            });
+          console.log(this.restaurant);
         }, (error) => {
           console.log(error);
         });
@@ -48,18 +43,18 @@ export class FormComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveMovie() {
+  saveRestaurant() {
     if (this.editing) {
-      this.moviesService.put(this.movie).subscribe((data) => {
-        alert('Película actualizada');
+      this.restaurantsService.put(this.restaurant).subscribe((data) => {
+        alert('Restaurante actualizado');
         console.log(data);
       }, (error) => {
         console.log(error);
         alert('Ocurrió un error');
       });
     } else {
-      this.moviesService.save(this.movie).subscribe((data) => {
-        alert('Película guardada');
+      this.restaurantsService.save(this.restaurant).subscribe((data) => {
+        alert('Restaurante guardado');
         console.log(data);
       }, (error) => {
         console.log(error);

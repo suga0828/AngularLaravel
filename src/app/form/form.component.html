@@ -1,26 +1,18 @@
-<h2>Crear Película</h2>
-<div>
+<h2 *ngIf="!editing">Crear Restaurante</h2>
+<h2 *ngIf="editing">Editar Restaurante</h2>
+<div class="container">
   <div class="form-group">
     <label for="name">Nombre</label>
-    <input [(ngModel)]="movie.name" type="text" class="form-control" id="name" placeholder="Ingresar Nombre">
+    <input [(ngModel)]="restaurant.name" type="text" class="form-control" id="name" placeholder="Ingresar Nombre">
   </div>
 
   <div class="form-group">
     <label for="description">Descripción</label>
-    <textarea [(ngModel)]="movie.description" class="form-control" id="description" placeholder="Ingresar Descripción"></textarea>
+    <textarea [(ngModel)]="restaurant.description" class="form-control" id="description" placeholder="Ingresar Descripción"></textarea>
   </div>
   <div class="form-group">
-    <label for="genre">Género</label>
-    <input [(ngModel)]="movie.genre" type="text" class="form-control" id="genre" placeholder="Ingresar Género">
+    <label for="genre">Imagen</label>
+    <input [(ngModel)]="restaurant.image" type="text" class="form-control" id="genre" placeholder="Ingresar url de su imagen">
   </div>
-  <div class="form-group">
-    <label for="duration">Duración</label>
-    <input [(ngModel)]="movie.duration" type="text" class="form-control" id="duration" placeholder="Ingresar Duración">
-  </div>
-  <div class="form-group">
-    <label for="year">Año</label>
-    <input [(ngModel)]="movie.year" type="number" class="form-control" id="year" placeholder="Ingresar Año">
-  </div>
-
-  <button (click)="saveMovie()" class="btn btn-primary btn-block">Guardar</button>
+  <button (click)="saveRestaurant()" class="btn btn-primary btn-block">Guardar</button>
 </div>

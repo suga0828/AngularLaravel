@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import {Movie} from '../interfaces/movie';
-import {MoviesService} from '../services/movies.service';
+import {Restaurant} from '../interfaces/restaurant';
+import {RestaurantsService} from '../services/restaurant.service';
 
 import { map } from 'rxjs/operators';
 
@@ -12,18 +12,15 @@ import { map } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-    movies: Movie[];
-    constructor(private movieService: MoviesService) {
-     this.getMovies();
+    restaurants: Restaurant[];
+    constructor(private restaurantService: RestaurantsService) {
+     this.getRestaurants();
   }
-  getMovies() {
-    this.movieService.get()
-      .pipe(
-        map( response => response.objects)
-      )
-      .subscribe((data: Movie[]) => {
-        console.log(data)
-        this.movies = data;
+  getRestaurants() {
+    this.restaurantService.get()
+      .subscribe((data: Restaurant[]) => {
+        console.log(data);
+        this.restaurants = data;
       }, (error) => {
         console.log(error);
         alert('Ocurrió un error');
@@ -34,11 +31,11 @@ export class HomeComponent implements OnInit {
   }
 
     delete(id) {
-    if (confirm('Seguro que deseas eliminar esta película?')) {
-      this.movieService.delete(id).subscribe((data) => {
+    if (confirm('Seguro que deseas eliminar este restaurante?')) {
+      this.restaurantService.delete(id).subscribe((data) => {
         alert('Eliminado con Éxito');
         console.log(data);
-        this.getMovies();
+        this.getRestaurants();
       }, (error) => {
         console.log(error);
       });

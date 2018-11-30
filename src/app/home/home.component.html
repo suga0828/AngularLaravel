@@ -3,22 +3,20 @@
   <tr>
     <th scope="col">Id</th>
     <th scope="col">Nombre</th>
-    <th scope="col">Género</th>
-    <th scope="col">Año</th>
-    <th scope="col">Duración</th>
-    <th scope="col"></th>
+    <th scope="col">Descripción</th>
+    <th scope="col">Imagen</th>
+    <th scope="col">Acción</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let movie of movies">
-    <td>{{movie.id}}</td>
-    <th>{{movie.name}}</th>
-    <td>{{movie.genre}}</td>
-    <td>{{movie.year}}</td>
-    <td>{{movie.duration}}</td>
+  <tr *ngFor="let restaurant of restaurants">
+    <td>{{restaurant.id}}</td>
+    <th>{{restaurant.name}}</th>
+    <th>{{restaurant.description}}</th>
+    <th>{{restaurant.image}}</th>
     <td>
-      <a class="btn btn-primary btn-sm" routerLink="/form/{{movie.id}}">Ver/Editar</a>
-      <a class="btn btn-primary btn-sm btn-danger" (click)="delete(movie.id)">Eliminar</a>
+      <a class="btn btn-primary btn-sm" routerLink="/form/{{restaurant.id}}">Ver/Editar</a>
+      <a class="btn btn-primary btn-sm btn-danger" (click)="delete(restaurant.id)">Eliminar</a>
     </td>
   </tr>
   </tbody>

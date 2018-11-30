@@ -1,10 +1,8 @@
-export interface Movie {
+export interface Restaurant {
   id?: number;
   name: string;
   description: string;
-  genre: string;
-  year: number;
-  duration: string;
   created_at?: string;
   update_at?: string;
+  image?: string;
 }
