@@ -1,0 +1,61 @@
+<div id="login">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a routerLink="/home" id="home">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page" *ngIf="login">Login</li>
+			<li class="breadcrumb-item active" aria-current="page" *ngIf="!login">Register</li>
+		</ol>
+	</nav>
+	<div class="container shadow p-3 mb-5 bg-white rounded">
+		<div class="row justify-content-center" *ngIf="login">
+			<div class="col-12 col-md-4">
+				<form>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Email address</label>
+					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+					placeholder="Enter email" [(ngModel)]="user.email" name="email">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">Password</label>
+					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+					[(ngModel)]="user.password" name="password">
+					</div>
+				<button type="submit" class="btn btn-dark btn-block" (click)="logIn()">Login</button>
+				<div class="form-group">
+					<p>You still don't have an account? <a (click)="changeAction()" class="text-primary font-weight-bold link">Create an account</a></p>
+				</div>
+				</form>
+			</div>
+		</div>
+		<div class="row justify-content-center" *ngIf="!login">
+			<div class="col-12 col-md-4">
+				<form>
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter your name"
+						[(ngModel)]="user.name" name="name">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail2">Email address</label>
+						<input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
+						placeholder="Enter email" [(ngModel)]="user.email" name="email">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword21">Password</label>
+						<input type="password" class="form-control" id="exampleInputPassword21" placeholder="Password"
+						[(ngModel)]="user.password" name="password">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword22">Password confirmation</label>
+						<input type="password" class="form-control" id="exampleInputPassword22" placeholder="Password confirmation"
+						[(ngModel)]="user.password_confirmation"  name="password_confirmation">
+					</div>
+					<button type="submit" class="btn btn-success btn-block" (click)="signUp()">Register</button>
+				</form>
+				<div class="form-group">
+					<p>You have an account? <a (click)="changeAction()" class="text-primary font-weight-bold link">Log in</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

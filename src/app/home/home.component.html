@@ -13,10 +13,10 @@
     <td>{{restaurant.id}}</td>
     <th>{{restaurant.name}}</th>
     <th>{{restaurant.description}}</th>
-    <th>{{restaurant.image}}</th>
+    <th><img [src]=" restaurant.image || 'https://via.placeholder.com/100' " alt=""></th>
     <td>
-      <a class="btn btn-primary btn-sm" routerLink="/form/{{restaurant.id}}">Ver/Editar</a>
-      <a class="btn btn-primary btn-sm btn-danger" (click)="delete(restaurant.id)">Eliminar</a>
+      <a class="btn btn-primary btn-sm btn-block" routerLink="/form/{{restaurant.id}}">Ver/Editar</a>
+      <a class="btn btn-primary btn-sm btn-block btn-danger" (click)="delete(restaurant.id)">Eliminar</a>
     </td>
   </tr>
   </tbody>
