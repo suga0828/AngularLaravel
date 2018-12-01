@@ -4,6 +4,8 @@ import {Restaurant} from '../interfaces/restaurant';
 import {RestaurantsService} from '../services/restaurant.service';
 import {ActivatedRoute} from '@angular/router';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -21,7 +23,10 @@ export class FormComponent implements OnInit {
   editing = false;
   restaurants: Restaurant[];
 
-  constructor(private restaurantsService: RestaurantsService, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private restaurantsService: RestaurantsService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
     this.id = this.activatedRoute.snapshot.params['id'];
     if (this.id) {
       this.editing = true;
@@ -48,6 +53,7 @@ export class FormComponent implements OnInit {
       this.restaurantsService.put(this.restaurant).subscribe((data) => {
         alert('Restaurante actualizado');
         console.log(data);
+        this.router.navigate(['home']);
       }, (error) => {
         console.log(error);
         alert('Ocurrió un error');
@@ -56,6 +62,7 @@ export class FormComponent implements OnInit {
       this.restaurantsService.save(this.restaurant).subscribe((data) => {
         alert('Restaurante guardado');
         console.log(data);
+        this.router.navigate(['home']);
       }, (error) => {
         console.log(error);
         alert('Ocurrió un error');

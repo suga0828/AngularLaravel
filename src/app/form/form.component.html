@@ -1,18 +1,35 @@
-<h2 *ngIf="!editing">Crear Restaurante</h2>
-<h2 *ngIf="editing">Editar Restaurante</h2>
-<div class="container">
-  <div class="form-group">
-    <label for="name">Nombre</label>
-    <input [(ngModel)]="restaurant.name" type="text" class="form-control" id="name" placeholder="Ingresar Nombre">
+<div id="form">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/home" id="home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page" *ngIf="login">Login</li>
+      <li class="breadcrumb-item active" aria-current="page" *ngIf="!login">Register</li>
+    </ol>
+  </nav>
+  <div class="container shadow p-3 mb-5 bg-white rounded">
+    <div class="row justify-content-center">
+      <h2 *ngIf="!editing">Crear Restaurante</h2>
+      <h2 *ngIf="editing">Editar Restaurante</h2>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-4">
+        <form>
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input [(ngModel)]="restaurant.name" type="text" class="form-control" id="name" placeholder="Ingresar Nombre" name="name">
+          </div>
+          
+          <div class="form-group">
+            <label for="description">Descripción</label>
+            <textarea [(ngModel)]="restaurant.description" class="form-control" id="description" placeholder="Ingresar Descripción" name="description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="genre">Imagen</label>
+            <input [(ngModel)]="restaurant.image" type="text" class="form-control" id="genre" placeholder="Ingresar url de su imagen" name="image">
+          </div>
+          <button (click)="saveRestaurant()" class="btn btn-primary btn-block">Guardar</button>
+        </form>
+      </div>
+    </div>  
   </div>
-
-  <div class="form-group">
-    <label for="description">Descripción</label>
-    <textarea [(ngModel)]="restaurant.description" class="form-control" id="description" placeholder="Ingresar Descripción"></textarea>
-  </div>
-  <div class="form-group">
-    <label for="genre">Imagen</label>
-    <input [(ngModel)]="restaurant.image" type="text" class="form-control" id="genre" placeholder="Ingresar url de su imagen">
-  </div>
-  <button (click)="saveRestaurant()" class="btn btn-primary btn-block">Guardar</button>
 </div>
