@@ -1,0 +1,52 @@
+<div id="form">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/home" id="home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Profile</li>
+    </ol>
+  </nav>
+  <div class="container shadow p-3 mb-5 bg-white rounded">
+    <div class="row justify-content-center">
+      <h2>Perfil de usuario</h2>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-4">
+        <form>
+          <div class="form-group">
+            <label for="name">Nombre de usuario</label>
+            <input [(ngModel)]="user.name" type="text" class="form-control" id="name" placeholder="Nombre de usuario"
+              name="name" #name="ngModel" required>
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+              Name is required
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <textarea [(ngModel)]="user.email" class="form-control" id="email" placeholder="Email"
+              name="email" #email="ngModel" required></textarea>
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+              Email is required
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" disabled>Guardar</button>
+        </form>
+      </div>
+    </div>
+    <hr />
+    <div *ngIf="users">
+      <div class="row justify-content-center">
+        <h2>Usuarios</h2>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-4">
+            <ul class="list-group">
+              <li class="list-group-item"*ngFor="let userL of users">
+                <b>{{ userL.name }} </b><small>{{ userL.email }} </small>
+                <span class="badge badge-primary badge-pill" *ngIf="userL.id === user.id">Current</span>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
