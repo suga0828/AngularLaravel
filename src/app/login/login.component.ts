@@ -4,6 +4,7 @@ import { UserService } from '../services/user.service';
 import { map } from 'rxjs/operators';
 
 import { Router, ActivatedRoute } from '@angular/router';
+import { ApiResponse } from '../interfaces/apiResponse';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
     console.log('signup');
     console.log(this.user);
     this.userService.signUp(this.user)
-      .subscribe(data => {
+      .subscribe( (data: ApiResponse) => {
         alert(data.message);
       }, error => alert(error));
   }
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
 
   logOut() {
     this.userService.logOut()
-      .subscribe( data => {
+      .subscribe( (data: ApiResponse) => {
         alert(data.message);
         this.router.navigate(['login']);
       }, error => console.log(error));
