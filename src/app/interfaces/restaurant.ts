@@ -4,5 +4,5 @@ export interface Restaurant {
   description: string;
   created_at?: string;
   update_at?: string;
-  image?: string;
+  image: string;
 }
